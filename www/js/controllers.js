@@ -49,15 +49,43 @@ angular.module('starter.controllers', [])
 .controller('CoordinateCtrl', function($scope) {
   // Dezimalgrad N50.418716°, E006.750000°
   $scope.dezimalgrad = {};
-  $scope.dezimalgrad.lat = {};
-  $scope.dezimalgrad.lon = {};
+  $scope.dezimalgrad.lat = 37.76770;
+  $scope.dezimalgrad.lon = -122.44400;
 
   //  gradBogenminuten N50°25.123' E006°45.000'
   $scope.gradBogenminuten = {};
   $scope.gradBogenminuten.lat = {};
   $scope.gradBogenminuten.lon = {};
 
-  function convertDGtoGBM(latO, lat, lonO, lon){
+  $scope.calcAll = function(){
+    convertDGtoGBM($scope.dezimalgrad.lat, $scope.dezimalgrad.lon);
+  }
+
+  function convertDGtoGBM(lat, lon){
+    var bogenminuteLat, bogenminuteLon, orientationLat, orientationLon;
+    orientationLat = lat >= 0 ? "N" : "S";
+    orientationLon = lon >= 0 ? "O" : "W";
+    lat = Math.abs(lat);
+    lon = Math.abs(lon);
+    gradLat = Math.floor(lat);
+    gradLon = Math.floor(lon);
+
+    bogenminuteLat = (lat -gradLat) * 60;
+    bogenminuteLon = (lon -gradLon) * 60;
+    bogenminuteLat = Math.round(bogenminuteLat * 1000) / 1000;
+    bogenminuteLon = Math.round(bogenminuteLon * 1000) / 1000;
+
+    console.log("Lat: " + orientationLat + " " + gradLat +"° "+bogenminuteLat);
+    console.log("Lat: " + orientationLon + " " + gradLon +"° "+bogenminuteLon);
+
+    $scope.gradBogenminuten.lat.orientation = orientationLat;
+    $scope.gradBogenminuten.lat.grad = gradLat;
+    $scope.gradBogenminuten.lat.minuten = bogenminuteLat;
+    
+    $scope.gradBogenminuten.lon.orientation = orientationLon;
+    $scope.gradBogenminuten.lon.grad = gradLon;
+    $scope.gradBogenminuten.lon.minuten = bogenminuteLon;
+
 
   }
 

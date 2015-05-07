@@ -1,33 +1,52 @@
 <ion-view view-title="Koordinaten Konverter">
   <ion-content>
 
-
-
-    <div class="bar bar-header item-input-inset">
-  <label class="item-input-wrapper">
-
-    <input type="number" maxlength="2" max="99" min="0" step="1" placeholder="49">
-  </label>
-  <label class="item-input-wrapper">
-    <input type="number" maxlength="2" max="99" min="0" step="1" placeholder="34">
-  </label>
-</div>
-
-
-    <div class="item item-input-inset">
-      <label class="item-input-wrapper">
-        <input type="number" maxlength="2" max="99" min="0" step="1" placeholder="49">
-      </label>
-    </div>
-    <div class="row">
-      <div class="col">
-        <input type="number" maxlength="2" max="99" min="0" step="1" placeholder="49">
+    <div class="card">
+      <div class="item item-divider">
+        Dezimalgrad <i>(dd.ddddd)</i>
       </div>
-      <div class="col">
-        .<input type="number" maxlength="2" max="99" min="0" step="1" placeholder="49">
+      <div class="item item-text-wrap">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Breitengrad</span>
+            <input ng-model="dezimalgrad.lat" type="text" placeholder="50.418716">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Längengrad</span>
+            <input ng-model="dezimalgrad.lon" type="text" placeholder="006.750000">
+          </label>
+        </div>
+      </div>
+      <div class="item item-divider">
+        N {{dezimalgrad.lat}}° O {{dezimalgrad.lon}}°
       </div>
     </div>
 
+    <div class="card">
+      <div class="item item-divider">
+        Grad, Bogenminuten <i>(dd° mm.mmm')</i>
+      </div>
+      <div class="item item-text-wrap">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Breitengrad</span>
+            <input ng-model="dezimalgrad.lat" type="text" placeholder="50.418716">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Längengrad</span>
+            <input ng-model="dezimalgrad.lon" type="text" placeholder="006.750000">
+          </label>
+        </div>
+      </div>
+      <div class="item item-divider">
+          {{gradBogenminuten.lat.orientation}} {{gradBogenminuten.lat.grad}}° {{gradBogenminuten.lat.minuten}}' {{gradBogenminuten.lon.orientation}} {{gradBogenminuten.lon.grad}}° {{gradBogenminuten.lon.minuten}}'
+      </div>
+    </div>
+
+
+    <button class="button button-block button-balanced" ng-click="calcAll()">
+      Konvertieren
+    </button>
 
     <hr> {{dezimalgrad}}
     <br> {{gradBogenminuten}}
