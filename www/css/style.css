@@ -1,1 +1,12 @@
 /* Empty. Add your own CSS if you like */
+.margin-right{
+  margin-right: 10px;
+}
+
+.selectOrientation{
+  min-width: 45px;
+}
+
+body{
+  padding-bottom:15px;
+}

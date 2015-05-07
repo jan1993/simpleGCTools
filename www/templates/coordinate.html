@@ -1,54 +1,97 @@
 <ion-view view-title="Koordinaten Konverter">
-  <ion-content>
+  <ion-content class="has-footer">
 
     <div class="card">
-      <div class="item item-divider">
+      <div class="item item-divider" ng-class="{'item-calm': lastActive == 'dezimalgrad'}">
         Dezimalgrad <i>(dd.ddddd)</i>
       </div>
-      <div class="item item-text-wrap">
-        <div class="list">
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Breitengrad</span>
-            <input ng-model="dezimalgrad.lat" type="text" placeholder="50.418716">
-          </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Längengrad</span>
-            <input ng-model="dezimalgrad.lon" type="text" placeholder="006.750000">
-          </label>
-        </div>
+
+      <div class="list">
+        <li class="item">
+          Breitengrad:
+          <input ng-change="change('dezimalgrad')" ng-model="dezimalgrad.lat" type="text" placeholder="50.418716">
+        </li>
+
+        <li class="item">
+          Längengrad:
+          <input ng-change="change('dezimalgrad')" ng-model="dezimalgrad.lon" type="text" placeholder="50.418716">
+        </li>
       </div>
+
+
       <div class="item item-divider">
-        N {{dezimalgrad.lat}}° O {{dezimalgrad.lon}}°
+        <div class="row">
+          <div class="col col-90">N{{dezimalgrad.lat}}° O{{dezimalgrad.lon}}°</div>
+          <div style="text-align:right" class="col col-10">
+            <button class="button button-small button-light icon ion-clipboard" ng-click="copy('N'+dezimalgrad.lat+'° O'+dezimalgrad.lon+'°')"></button>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="card">
-      <div class="item item-divider">
+      <div class="item item-divider" ng-class="{'item-calm': lastActive == 'bogenminuten'}">
         Grad, Bogenminuten <i>(dd° mm.mmm')</i>
       </div>
-      <div class="item item-text-wrap">
-        <div class="list">
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Breitengrad</span>
-            <input ng-model="dezimalgrad.lat" type="text" placeholder="50.418716">
-          </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Längengrad</span>
-            <input ng-model="dezimalgrad.lon" type="text" placeholder="006.750000">
-          </label>
-        </div>
+      <div class="list">
+        <li class="item">
+          Breitengrad:
+          <div class="row">
+            <select ng-change="change('bogenminuten')" ng-model="gradBogenminuten.lat.orientation" class="selectOrientation margin-right">
+              <option>N</option>
+              <option>S</option>
+            </select>
+            <div class="">
+              <input ng-change="change('bogenminuten')" size="2" maxlength="2" ng-model="gradBogenminuten.lat.grad" type="text" placeholder="49">
+            </div>
+            <div class="">
+              <input ng-change="change('bogenminuten')" class="" size="6" maxlength="6" ng-model="gradBogenminuten.lat.minuten" type="text" placeholder="35.062">
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          Längengrad:
+          <div class="row">
+            <select ng-change="change('bogenminuten')" ng-model="gradBogenminuten.lon.orientation" class="selectOrientation margin-right">
+              <option>E</option>
+              <option>W</option>
+            </select>
+            <div class="">
+              <input ng-change="change('bogenminuten')" size="2" maxlength="2" ng-model="gradBogenminuten.lon.grad" type="text" placeholder="49">
+            </div>
+            <div class="">
+              <input ng-change="change('bogenminuten')" class="" size="6" maxlength="6" ng-model="gradBogenminuten.lon.minuten" type="text" placeholder="35.062">
+            </div>
+          </div>
+        </li>
       </div>
       <div class="item item-divider">
-          {{gradBogenminuten.lat.orientation}} {{gradBogenminuten.lat.grad}}° {{gradBogenminuten.lat.minuten}}' {{gradBogenminuten.lon.orientation}} {{gradBogenminuten.lon.grad}}° {{gradBogenminuten.lon.minuten}}'
+        <div class="row">
+          <div class="col col-90">{{gradBogenminuten.lat.orientation}} {{gradBogenminuten.lat.grad}}° {{gradBogenminuten.lat.minuten}}' {{gradBogenminuten.lon.orientation}} {{gradBogenminuten.lon.grad}}° {{gradBogenminuten.lon.minuten}}'</div>
+          <div style="text-align:right" class="col col-10">
+            <button class="button button-small button-light icon ion-clipboard" ng-click="copy(
+            gradBogenminuten.lat.orientation +
+            gradBogenminuten.lat.grad +
+            '° '+
+            gradBogenminuten.lat.minuten +
+            '\' '+
+            gradBogenminuten.lon.orientation +
+            gradBogenminuten.lon.grad +
+            '° '+
+            gradBogenminuten.lon.minuten+
+            '\'')"></button>
+          </div>
+        </div>
       </div>
     </div>
 
-
-    <button class="button button-block button-balanced" ng-click="calcAll()">
-      Konvertieren
-    </button>
-
-    <hr> {{dezimalgrad}}
-    <br> {{gradBogenminuten}}
   </ion-content>
 </ion-view>
+
+<div class="bar bar-footer bar-stable">
+  <button class="button icon-left ion-ios-color-wand-outline button-calm" ng-click="calcAll()">
+    Konvertieren
+  </button>
+  <button ng-click="locate()" class="button button-calm icon-right ion-ios-location-outline">Locate</button>
+</div>
