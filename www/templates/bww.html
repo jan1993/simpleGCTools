@@ -1,0 +1,19 @@
+<ion-view view-title="Buchstabenwortwert">
+  <ion-content>
+    {{test}}
+    <div class="list">
+    <label class="item item-input">
+      <span class="input-label">Eingabe:</span>
+      <input type="text" ng-model="input.string">
+    </label>
+  </div>
+    {{input.string}}
+    {{output}}
+
+    <button ng-click="calc()" class="button button-block button-balanced">
+        Berechne
+    </button>
+
+    </div>
+  </ion-content>
+</ion-view>
