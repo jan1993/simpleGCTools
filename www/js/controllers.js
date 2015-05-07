@@ -8,6 +8,7 @@ angular.module('starter.controllers', [])
   }
 })
 
+
 .controller('BwwCtrl', function($scope) {
   $scope.input = {};
   $scope.output = {}
@@ -16,7 +17,7 @@ angular.module('starter.controllers', [])
 
   $scope.calc = function() {
     var str = $scope.input.string;
-    str = str.toLowerCase()+"";
+    str = str.toLowerCase() + "";
 
     if (!str) return;
 
@@ -28,21 +29,36 @@ angular.module('starter.controllers', [])
     output.chars = str.length; // A B C = 5
 
     for (var i = 0; i < str.length; i++) {
-      val = alphabet.search(str[i]);
+      val = alphabet.indexOf(str[i]);
       console.log(val);
 
-      if (val > 0) {
-        output.charsValid++;
+      if (val >= 0) {
+        if (val > 0) output.charsValid++;
         output.sum += val;
         output.pro = output.pro * val || val;
         output.all += val + " ";
-      }
-      else
-      {
+      } else {
         output.all += "invalid ";
       }
     }
 
     $scope.output = output;
   }
+})
+
+.controller('CoordinateCtrl', function($scope) {
+  // Dezimalgrad N50.418716°, E006.750000°
+  $scope.dezimalgrad = {};
+  $scope.dezimalgrad.lat = {};
+  $scope.dezimalgrad.lon = {};
+
+  //  gradBogenminuten N50°25.123' E006°45.000'
+  $scope.gradBogenminuten = {};
+  $scope.gradBogenminuten.lat = {};
+  $scope.gradBogenminuten.lon = {};
+
+  function convertDGtoGBM(latO, lat, lonO, lon){
+
+  }
+
 });

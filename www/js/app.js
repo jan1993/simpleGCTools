@@ -40,12 +40,23 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+
   .state('app.bww', {
     url: "/bww",
     views: {
       'menuContent': {
         templateUrl: "templates/bww.html",
         controller: 'BwwCtrl'
+      }
+    }
+  })
+
+  .state('app.coordinate', {
+    url: "/coordinate",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/coordinate.html",
+        controller: 'CoordinateCtrl'
       }
     }
   });

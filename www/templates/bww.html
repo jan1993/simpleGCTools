@@ -1,19 +1,35 @@
 <ion-view view-title="Buchstabenwortwert">
   <ion-content>
-    {{test}}
-    <div class="list">
-    <label class="item item-input">
-      <span class="input-label">Eingabe:</span>
-      <input type="text" ng-model="input.string">
-    </label>
-  </div>
-    {{input.string}}
-    {{output}}
 
-    <button ng-click="calc()" class="button button-block button-balanced">
-        Berechne
-    </button>
+    <div class="card">
+      <div class="item item-text-wrap">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label"><b>Eingabe:</b></span>
+          <input placeholder="Geocaching" ng-change="calc()" type="text" ng-model="input.string">
+        </label>
+      </div>
+
+      <div class="item item-text-wrap">
+        <b>Einzelne Buchstabenwerte:</b> {{output.all}}
+      </div>
+
+      <div class="item item-text-wrap">
+        <b>Buchstabensumme:</b> {{output.sum}}
+      </div>
+
+      <div class="item item-text-wrap">
+        <b>Buchstabenprodukt:</b> {{output.pro}}
+      </div>
+
+      <div class="item item-text-wrap">
+        <b>Gültige Zeichen:</b> {{output.charsValid}}
+      </div>
+
+      <div class="item item-text-wrap">
+        <b>Zeichen:</b> {{output.chars}} <i>(ohne leerzeichen)</i>
+      </div>
 
     </div>
+
   </ion-content>
 </ion-view>
