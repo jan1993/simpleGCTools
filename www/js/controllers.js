@@ -42,7 +42,32 @@ angular.module('starter.controllers', [])
       }
     }
 
+    output.qSum = quersumme(output.sum);
+    //output.qqSum = qQuersumme(output.sum);
+
     $scope.output = output;
+
+    function quersumme(val) {
+      var sum = 0;
+      val = val + "";
+
+      //if (val.length <= 1) return;
+      for (var i = 0; i < val.length; i++) {
+        sum += val[i] * 1;
+      }
+      return sum;
+    }
+
+    function qQuersumme(val) {
+      val += "";
+
+      while (val.length != 1) {
+        val = quersumme(val * 1);
+        val += "";
+      }
+
+      return val;
+    }
   }
 })
 
@@ -84,7 +109,7 @@ angular.module('starter.controllers', [])
     $cordovaClipboard
       .copy(text)
       .then(function() {
-        $cordovaToast.showShortBottom(text+' erfolgreich kopiert').then(function(success) {
+        $cordovaToast.showShortBottom(text + ' erfolgreich kopiert').then(function(success) {
           // success
         }, function(error) {
           // error
